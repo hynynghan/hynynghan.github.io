@@ -1,0 +1,35 @@
+.scroll-companions[hidden], .scroll-companions [hidden] { display: none; }
+.companion-profile, .companion-navigation { --companion-duration: 420ms; position: fixed; z-index: 8; top: 50%; width: var(--companion-width); max-height: max(0px, calc(100dvh - 2 * var(--companion-top))); overflow-y: auto; background: var(--white); opacity: 0; transform: translate(var(--companion-enter-x), calc(-50% + 0.5rem)) scale(.96); clip-path: inset(12% 0 12% 0); transition: opacity var(--companion-duration) cubic-bezier(.2, .75, .25, 1), transform var(--companion-duration) cubic-bezier(.2, .75, .25, 1), clip-path var(--companion-duration) cubic-bezier(.2, .75, .25, 1); }
+.scroll-companions[data-visible="true"][data-layout="wide"] > aside,
+.scroll-companions[data-visible="true"][data-layout="wide"] > .companion-navigation { opacity: 1; transform: translateY(-50%); clip-path: inset(0); }
+.scroll-companions[inert] { pointer-events: none; }
+.companion-profile { --companion-enter-x: -0.75rem; left: var(--companion-left); padding: 0.25rem; text-align: center; }
+.companion-heading { display: flex; align-items: center; justify-content: center; gap: 0.1875rem; margin-bottom: 0.375rem; font-size: 1.0625rem; }
+.companion-name { display: block; color: var(--ink); font-size: inherit; font-weight: 500; line-height: 1.35; letter-spacing: -0.01em; text-decoration: none; }
+.companion-heading .name-pronunciation { flex-shrink: 0; margin: 0; }
+.companion-profile .name-pronunciation-status { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.8125rem; }
+.companion-profile .profile-role { margin-bottom: 0.1875rem; font-size: 0.8125rem; line-height: 1.5; }
+.companion-profile .profile-email { font-size: 0.8125rem; }
+.companion-profile .profile-links { justify-content: center; gap: 0.3125rem; margin-top: 0.75rem; }
+.companion-profile .profile-links a { padding: 0.1875rem 0.375rem; font-size: 0.75rem; }
+.companion-navigation { --companion-enter-x: 0.75rem; right: var(--companion-right); }
+.companion-navigation ul { list-style: none; padding: 0.25rem; margin: 0; }
+.companion-navigation li + li { margin-top: 0.25rem; }
+.companion-navigation nav a { display: block; padding: 0.3125rem 0.5rem; border: 1px solid transparent; color: var(--muted); font-size: 0.8125rem; line-height: 1.45; text-decoration: none; }
+.companion-navigation nav a:hover, .companion-navigation nav a[aria-current="location"] { border-color: var(--green); color: var(--green); }
+.companion-toggle { padding: 0.375rem 0.625rem; border: 1px solid var(--green); border-radius: 0; background: white; color: var(--green); font: inherit; font-size: 0.8125rem; line-height: 1.4; cursor: pointer; }
+.companion-toggle:focus-visible { outline: 0.125rem solid var(--green); outline-offset: 0.1875rem; }
+.scroll-companions[data-layout="compact"] .companion-profile { display: none; }
+.scroll-companions[data-layout="compact"] .companion-navigation { --companion-duration: 280ms; z-index: 20; top: auto; right: 0.75rem; bottom: 0.75rem; width: auto; max-width: calc(100% - 1.5rem); max-height: calc(100dvh - var(--companion-top) - 1.5rem); display: flex; flex-direction: column; align-items: flex-end; overflow: visible; background: transparent; transform: translateY(0.5rem) scale(.96); transform-origin: bottom right; clip-path: none; }
+.scroll-companions[data-visible="true"][data-layout="compact"] .companion-navigation { opacity: 1; transform: none; }
+.scroll-companions[data-layout="compact"] nav { margin-bottom: 0.375rem; max-height: calc(100dvh - var(--companion-top) - 4.5rem); overflow-y: auto; border: 1px solid var(--rule); background: white; transform-origin: bottom right; animation: companion-menu-reveal 240ms ease-out both; }
+@keyframes companion-menu-reveal {
+  from { opacity: 0; transform: translateY(0.5rem) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-companions .companion-profile,
+  .scroll-companions .companion-navigation,
+  .scroll-companions nav { animation: none !important; transition: none !important; }
+}
+@media print { .scroll-companions { display: none !important; } }

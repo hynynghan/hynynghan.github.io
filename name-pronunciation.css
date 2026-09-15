@@ -1,0 +1,36 @@
+.name-with-pronunciation { white-space: nowrap; }
+.name-pronunciation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 24px;
+  min-height: 24px;
+  margin: -0.2em 0;
+  padding: 0.2em;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--green);
+  font: inherit;
+  line-height: 1;
+  vertical-align: -0.36em;
+  cursor: pointer;
+}
+.name-pronunciation[hidden] { display: none; }
+.name-pronunciation svg {
+  width: 1.1em;
+  height: 1.1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.name-pronunciation:hover,
+.name-pronunciation[data-state="playing"] { background: #edf0eb; }
+.name-pronunciation:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.bio .name-pronunciation-status { color: var(--muted); font-size: 0.875em; }
+.name-pronunciation-status:empty { display: none; }
+@media print { .name-pronunciation, .name-pronunciation-status { display: none; } }
